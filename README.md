@@ -23,26 +23,17 @@ This guide provides instructions on how to install an NFS server on Ubuntu using
 
 ### Installation Steps
 
-1. **Download the script:**
+1. **Download or Clone the script `nfs-server.sh`:**
 
-   Save the following script as `nfs-server.sh`:
-
-   \`\`\`bash
-   #!/bin/bash
-   # Script contents provided in the question.
-   \`\`\`
+ `git clone https://github.com/saifulislam88/nfs-server.git`
 
 2. **Make the script executable:**
 
-   \`\`\`bash
-   chmod +x nfs-server.sh
-   \`\`\`
-
+   `chmod +x nfs-server.sh`
+ 
 3. **Run the script:**
 
-   \`\`\`bash
-   sudo ./nfs-server.sh
-   \`\`\`
+  `./nfs-server.sh`
 
 4. **Choose your options:**
 
@@ -61,49 +52,47 @@ This guide provides instructions on how to install an NFS server on Ubuntu using
 
 1. **Update your system:**
 
-   \`\`\`bash
+ ```sh
    sudo apt-get update
    sudo apt-get upgrade -y
-   \`\`\`
+   ```
 
 2. **Install NFS server packages:**
 
-   \`\`\`bash
+   ```sh
    sudo apt-get install nfs-kernel-server -y
-   \`\`\`
+ ```
 
 3. **Start and enable the NFS service:**
 
-   \`\`\`bash
+   ```sh
    sudo systemctl start nfs-kernel-server
    sudo systemctl enable nfs-kernel-server
-   \`\`\`
+   ```
 
 ### Step 2: Configure Exported Directories
 
 1. **Create directories for sharing:**
 
-   \`\`\`bash
+```sh
    sudo mkdir -p /mnt/nfs_share_linux
    sudo chown nobody:nogroup /mnt/nfs_share_linux
    sudo chmod 777 /mnt/nfs_share_linux
-   \`\`\`
+```
 
 2. **Edit the `/etc/exports` file:**
 
    Add the following lines to the `/etc/exports` file to configure NFS shares:
 
-   \`\`\`bash
-   /mnt/nfs_share_linux *(rw,sync,no_root_squash,insecure,no_subtree_check)
-   /mnt/nfs_share_windows 192.168.1.0/24(rw,sync,no_root_squash,all_squash,anonuid=65534,anongid=65534)
-   \`\`\`
+   `/mnt/nfs_share_linux *(rw,sync,no_root_squash,insecure,no_subtree_check)`
+   `/mnt/nfs_share_windows 192.168.1.0/24(rw,sync,no_root_squash,all_squash,anonuid=65534,anongid=65534)`
+
 
 3. **Export the NFS shares:**
 
-   \`\`\`bash
-   sudo exportfs -a
-   sudo exportfs -v
-   \`\`\`
+   `sudo exportfs -a`
+   `sudo exportfs -v`
+
 
 ### Step 3: Firewall Configuration
 
@@ -115,9 +104,9 @@ If IPTables, UFW, or any other firewall is active, ensure that the necessary por
 
 ### Step 4: Verify the NFS Server Status
 
-\`\`\`bash
+```sh
 sudo systemctl status nfs-kernel-server
-\`\`\`
+```
 
 ## NFS Client Configuration
 
@@ -125,21 +114,20 @@ sudo systemctl status nfs-kernel-server
 
 1. **Install NFS client:**
 
-   \`\`\`bash
-   sudo apt-get install nfs-common -y
-   \`\`\`
+   
+`sudo apt-get install nfs-common -y`
+ 
 
 2. **Mount the NFS share:**
 
-   \`\`\`bash
-   sudo mount -t nfs <server_ip>:/mnt/nfs_share_linux /mnt/local_mount_point
-   \`\`\`
+
+`sudo mount -t nfs <server_ip>:/mnt/nfs_share_linux /mnt/local_mount_point`
+
 
 3. **To make the mount persistent across reboots, add the following to `/etc/fstab`:**
 
-   \`\`\`bash
-   <server_ip>:/mnt/nfs_share_linux /mnt/local_mount_point nfs defaults 0 0
-   \`\`\`
+`<server_ip>:/mnt/nfs_share_linux /mnt/local_mount_point nfs defaults 0 0`
+  
 
 ### Windows Client
 
@@ -151,7 +139,7 @@ sudo systemctl status nfs-kernel-server
 2. **Mount the NFS share:**
 
    \`\`\`cmd
-   mount \\<server_ip>\mnt\nfs_share_windows Z:
+   `mount \\<server_ip>\mnt\nfs_share_windows Z:`
    \`\`\`
 
 3. **Map the NFS share as a network drive:**
@@ -189,11 +177,11 @@ sudo systemctl status nfs-kernel-server
 - **Check NFS logs:**
 
   \`\`\`bash
-  sudo journalctl -xe | grep nfs
+  `sudo journalctl -xe | grep nfs`
   \`\`\`
 
 - **Verify exported file systems:**
 
   \`\`\`bash
-  sudo exportfs -v
+  `udo exportfs -v`
   \`\`\`
