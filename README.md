@@ -84,7 +84,7 @@ This guide provides instructions on how to install an NFS server on Ubuntu using
 
    Add the following lines to the `/etc/exports` file to configure NFS shares:
 
-   `/mnt/nfs_share_linux *(rw,sync,no_root_squash,insecure,no_subtree_check)`
+   `/mnt/nfs_share_linux *(rw,sync,no_root_squash,insecure,no_subtree_check)`\
    `/mnt/nfs_share_windows 192.168.1.0/24(rw,sync,no_root_squash,all_squash,anonuid=65534,anongid=65534)`
 
 
