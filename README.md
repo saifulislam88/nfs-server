@@ -25,7 +25,7 @@ This guide provides instructions on how to install an NFS server on Ubuntu using
 
 1. **Download the script:**
 
-   Save the following script as `nfs-server-v2.sh`:
+   Save the following script as `nfs-server.sh`:
 
    \`\`\`bash
    #!/bin/bash
@@ -35,13 +35,13 @@ This guide provides instructions on how to install an NFS server on Ubuntu using
 2. **Make the script executable:**
 
    \`\`\`bash
-   chmod +x nfs-server-v2.sh
+   chmod +x nfs-server.sh
    \`\`\`
 
 3. **Run the script:**
 
    \`\`\`bash
-   sudo ./nfs-server-v2.sh
+   sudo ./nfs-server.sh
    \`\`\`
 
 4. **Choose your options:**
