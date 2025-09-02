@@ -90,8 +90,10 @@ This guide provides instructions on how to install an NFS server on Ubuntu using
 
 3. **Export the NFS shares:**
 
-   `sudo exportfs -a`
-   `sudo exportfs -v`
+   `sudo exportfs -a`\
+   `sudo exportfs -v`\
+    `exportfs -ra`\
+    `systemctl restart nfs-server`
 
 
 ### Step 3: Firewall Configuration
